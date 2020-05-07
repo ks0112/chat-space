@@ -1,6 +1,5 @@
 .chat-main {
   width: calc(100vw - 300px);
-  // height: 100vh;
   background-color: #ffffff;
   .main-header {
     height: 100px;
@@ -45,7 +44,6 @@
     width: calc(100vw - 300px);
     background-color: #fafafa;
     padding: 35px 40px;
-    // overflow: scroll;
     &__message {
       margin-bottom: 46px;
       &__upper-into {

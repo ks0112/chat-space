@@ -2,51 +2,32 @@
   .main-header
     .main-header__left-box
       %h2.main-header__left-box__current-group
-        チームF:
+        = @group.name
       %ul.main-header__left-box__member-list
         Member:
         %li.main-header__left-box__member-list__member
-          杉原
-        %li.main-header__left-box__member-list__member
-          山口
-        %li.main-header__left-box__member-list__member
-          前田
+          - @group.users.each do |user|
+            = user.name
     .main-header__edit-btn
-      = link_to "#" do
+      = link_to edit_group_path(@group) do
         Edit
 
   .messages
+    = render @messages
     .messages__message
       .messages__message__upper-into
         %p.messages__message__upper-into__talker
           杉原
         %p.messages__message__upper-into__date
-          2020/05/07(Thu)08:00
+          2020/05/07(Thu):00
       .messages__message__text
         おはよう
-    .messages__message
-      .messages__message__upper-into
-        %p.messages__message__upper-into__talker
-          山口
-        %p.messages__message__upper-into__date
-          2020/05/07(Thu)12:01
-      .messages__message__text
-        こんにちは
-    .messages__message
-      .messages__message__upper-into
-        %p.messages__message__upper-into__talker
-          前田
-        %p.messages__message__upper-into__date
-          2020/05/07(Thu)19:02
-      .messages__message__text
-        こんばんわ
+
   .form
-    %form.new_message
+    = form_for [@group, @message] do |f|
       .input-box
-        %input{type: "text", class: "input-box__text", placeholder: "type a message"}
-        %label{class: "input-box__image"}
-          = icon('fas', 'image')
-          %input{type: "file", class: "input-box__image__file"}
-      %input{type: "submit", value:"Send", class: "submit-btn"}
-
-
+        = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+        = f.label :image, class: 'input-box__image' do
+          =icon('fas', 'image')
+          =f.file_field :image, class: 'input-box__image__file'
+      = f.submit 'Send', class: 'submit-btn'

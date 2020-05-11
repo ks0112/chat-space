@@ -14,14 +14,6 @@
 
   .messages
     = render @messages
-    .messages__message
-      .messages__message__upper-into
-        %p.messages__message__upper-into__talker
-          杉原
-        %p.messages__message__upper-into__date
-          2020/05/07(Thu):00
-      .messages__message__text
-        おはよう
 
   .form
     = form_for [@group, @message] do |f|

@@ -1,8 +1,8 @@
 $(function(){
     function buildHTML(message){
       if ( message.image ) {
-        let html =
-        `<div class="message">
+        let html = `
+          <div class="message">
             <div class="upper-message">
               <div class="upper-message__user-name">
                 ${message.user_name}
@@ -17,11 +17,12 @@ $(function(){
               </p>
             </div>
             <img src=${message.image} >
-          </div>`
+          </div>
+          `;
         return html;
       } else {
-        let html =
-        `<div class="message">
+        let html = `
+          <div class="message">
             <div class="upper-message">
               <div class="upper-message__user-name">
                 ${message.user_name}
@@ -35,7 +36,8 @@ $(function(){
                 ${message.content}
               </p>
             </div>
-          </div>`
+          </div>
+          `;
         return html;
       };
     }

@@ -42,29 +42,29 @@ $(function(){
         return html;
       };
     }
-    $('#new_message').on('submit', function(e){
-      e.preventDefault()
-      let formData = new FormData(this);
-      let url = $(this).attr('action');
-      $.ajax({
-        url: url,
-      type: 'POST',
-      data: formData,
-      dataType: 'json',
-      processData: false,
-      contentType: false
+  $('#new_message').on('submit', function(e){
+    e.preventDefault()
+    let formData = new FormData(this);
+    let url = $(this).attr('action');
+    $.ajax({
+      url: url,
+    type: 'POST',
+    data: formData,
+    dataType: 'json',
+    processData: false,
+    contentType: false
+  })
+    .done(function(data){
+      let html = buildHTML(data);
+      $('.messages').append(html);
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+      $('#new_message')[0].reset();
+      $('.submit-btn').attr('disabled', false);
     })
-     .done(function(data){
-       let html = buildHTML(data);
-       $('.messages').append(html);
-       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
-       $('#new_message')[0].reset();
-       $('.submit-btn').attr('disabled', false);
-     })
-     .fail(function(){
-       alert('メッセージ送信に失敗しました');
-     });
-    })
+    .fail(function(){
+      alert('メッセージ送信に失敗しました');
+    });
+  })
   let reloadMessages = function() {
     let last_message_id = $('.message:last').data("message-id");
     $.ajax({
